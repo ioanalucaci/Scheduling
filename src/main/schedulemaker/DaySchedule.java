@@ -38,7 +38,7 @@ public class DaySchedule
   //this adds just the auxiliary main.staff
   public boolean addStaff(Staff staff, String time)
   {
-    if(!checkifstaffinday(staff)) return false;
+    if(checkifstaffinday(staff)) return false;
     if(!staff.notclosetonightshift(this.date)) return false;
 
     boolean check = false;
@@ -89,14 +89,8 @@ public class DaySchedule
   public boolean checkifstaffinday(Staff staff)
   {
     if(this.weekday)
-    {
-      if( Arrays.asList(morningstaff).contains(staff) || Arrays.asList(afternoonstaff).contains(staff) || Arrays.asList(nightstaff).contains(staff))
-        return false;
-      else return true;
-    }
-    if( Arrays.asList(morningstaff).contains(staff) || Arrays.asList(nightstaff).contains(staff))
-      return false;
-    else return true;
+      return Arrays.asList(morningstaff).contains(staff) || Arrays.asList(afternoonstaff).contains(staff) || Arrays.asList(nightstaff).contains(staff);
+      else return Arrays.asList(morningstaff).contains(staff) || Arrays.asList(nightstaff).contains(staff);
   }
 
   //this function is used to find the position of the next main.staff in the array showing the schedule

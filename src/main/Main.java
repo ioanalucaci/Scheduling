@@ -21,7 +21,7 @@ class Main
             else if (i < 14) staff.add(new StretcherBearer(i));
             else staff.add(new Janitor(i));
 
-        for(int i = 0; i < 18; i++)
+        for(int i = 0; i < 20; i++)
             mastaff.add(new MedicalAssistant(i));
 
         MonthSchedule month = getmonth(userinput);
@@ -29,7 +29,7 @@ class Main
         ScheduleMakerMA scheduleMA = new ScheduleMakerMA();
 
         schedule.staffSchedule(staff, month);
-        scheduleMA.ma_schedule(mastaff, month);
+        scheduleMA.scheduleMA(mastaff, month);
 
         System.out.println("Schedules are finished! What would you like to print?");
         while(true)
@@ -45,8 +45,8 @@ class Main
 
     public static MonthSchedule getmonth(Scanner userinput)
     {
-        int i;
-        int n;
+        int i = 0;
+        int n = 30;
 
         String [] week = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 
@@ -64,19 +64,29 @@ class Main
 
         System.out.println("Please input the number of days this month has: ");
 
-        if(userinput.hasNextInt()) n = userinput.nextInt();
-        else
-            while(true)
-            {
-                System.out.println("Invalid format. Please try again. Input 'exit' to leave the application.  ");
-                String numofdays = userinput.nextLine();
-                if(numofdays.equals("exit")) System.exit(0);
-                if(userinput.hasNextInt())
-                {
-                    n = userinput.nextInt();
-                    break;
-                }
-            }
+        if(userinput.hasNextInt())
+        {
+            n = userinput.nextInt();
+            if(!(n == 30 || n == 28 || n == 31))
+                n = recursivenumber(userinput);
+        }
         return new MonthSchedule(i, n);
+    }
+
+    public static int recursivenumber(Scanner userinput)
+    {
+        int n;
+        while(true)
+        {
+            System.out.println("Please try again. Input 'exit' to leave the application.  ");
+            String numofdays = userinput.nextLine();
+            if(numofdays.equals("exit")) System.exit(0);
+            if(userinput.hasNextInt())
+            {
+                n = userinput.nextInt();
+                if(n == 30 || n == 28 || n == 31) break;
+            }
+        }
+        return n;
     }
 }
