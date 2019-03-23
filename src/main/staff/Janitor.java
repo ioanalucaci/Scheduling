@@ -1,6 +1,9 @@
 package main.staff;
 
-public class Janitor extends AuxStaff
+/**
+ * This class extends Auxiliary staff to create a specific type of auxiliary staff
+ */
+public class Janitor extends Staff
 {
   public Janitor(int id)
   {

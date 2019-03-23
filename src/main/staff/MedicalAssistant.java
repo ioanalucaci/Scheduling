@@ -1,5 +1,8 @@
 package main.staff;
 
+/**
+ * This class extends Staff to create a specific type of Staff
+ */
 public class MedicalAssistant extends Staff
 {
   public int nightsworked;

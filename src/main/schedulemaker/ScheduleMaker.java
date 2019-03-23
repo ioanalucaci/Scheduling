@@ -6,7 +6,7 @@ import main.staff.*;
 
 public class ScheduleMaker
 {
-  public void staffSchedule(ArrayList<AuxStaff> staff, MonthSchedule month)
+  public void staffSchedule(ArrayList<Staff> staff, MonthSchedule month)
   {
     DaySchedule[] schedule = month.schedule;
 
@@ -24,7 +24,7 @@ public class ScheduleMaker
     }
   }
 
-  public void addStaff(DaySchedule day, String time, int max, ArrayList<AuxStaff> staff)
+  public void addStaff(DaySchedule day, String time, int max, ArrayList<Staff> staff)
   {
     Random randomGenerator = new Random();
     int i = 0;
@@ -32,7 +32,7 @@ public class ScheduleMaker
     while(i < max)
     {
       int index = randomGenerator.nextInt(staff.size());
-      AuxStaff personell = staff.get(index);
+      Staff personell = staff.get(index);
       check = day.addStaff(personell, time);
       if(check)
       {

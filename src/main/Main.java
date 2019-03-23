@@ -6,13 +6,16 @@ import java.util.Scanner;
 import main.schedulemaker.*;
 import main.staff.*;
 
+/**
+ * @author Ioana Iulia Lucaci
+ */
 class Main
 {
     public static void main(String[] args)
     {
         Scanner userinput = new Scanner(System.in);
 
-        ArrayList<AuxStaff> staff = new ArrayList<AuxStaff>();
+        ArrayList<Staff> staff = new ArrayList<Staff>();
         ArrayList<MedicalAssistant> mastaff = new ArrayList<MedicalAssistant>();
 
         //this just populates the main.staff and medical assistant main.staff array
@@ -43,6 +46,11 @@ class Main
         }
     }
 
+    /**
+     * This method is used to take the user input to decide how to create the month, based on how many days it has and the first day of the month.
+     * @param userinput is the scanner that records the user input
+     * @return MonthSchedule this returns the month created based on the user input
+     */
     public static MonthSchedule getmonth(Scanner userinput)
     {
         int i = 0;
@@ -73,6 +81,11 @@ class Main
         return new MonthSchedule(i, n);
     }
 
+    /**
+     * This function is used to continuously asks the user for an adequate number of days in a month.
+     * @param userinput is the scanner that records the user input
+     * @return int this is the number of days in the month
+     */
     public static int recursivenumber(Scanner userinput)
     {
         int n;

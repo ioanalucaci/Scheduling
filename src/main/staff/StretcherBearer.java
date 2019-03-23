@@ -1,6 +1,9 @@
 package main.staff;
 
-public class StretcherBearer extends AuxStaff
+/**
+ * This class extends Auxiliary staff to create a specific type of auxiliary staff
+ */
+public class StretcherBearer extends Staff
 {
   public StretcherBearer(int id)
   {

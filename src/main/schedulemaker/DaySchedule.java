@@ -2,6 +2,9 @@ package main.schedulemaker;
 import java.util.Arrays;
 import main.staff.*;
 
+/**
+ * This class is created to store the information for all shifts
+ */
 public class DaySchedule
 {
   public String name;
@@ -16,6 +19,14 @@ public class DaySchedule
   public int maxafternoonstaff;
   public int maxnightstaff;
 
+  /**
+   * This is a setter for DaySchedule
+   * @param name this records the day of the week
+   * @param date this shows the day of the month
+   * @param maxmorningstaff this records how many people have to be in the morning shift
+   * @param maxafternoonstaff this records how many people have to be in the afternoon shift
+   * @param maxnightstaff this records how many people have to be in the night shift
+   */
   public DaySchedule(String name, int date, int maxmorningstaff, int maxafternoonstaff, int maxnightstaff)
   {
 
@@ -35,7 +46,12 @@ public class DaySchedule
     else this.afternoonstaff = new Staff[maxafternoonstaff];
   }
 
-  //this adds just the auxiliary main.staff
+  /**
+   * This function adds the staff member to a specific shift
+   * @param staff this is the staff to be added
+   * @param time this shows whether the shift is the morning, afternoon or night shift
+   * @return the function returns true if the staff was successfully added to the shift; false otherwise
+   */
   public boolean addStaff(Staff staff, String time)
   {
     if(checkifstaffinday(staff)) return false;
@@ -85,7 +101,11 @@ public class DaySchedule
     return check;
   }
 
-  //this checks that the main.staff hasn't been scheduled for any other shifts that day
+  /**
+   * This function checks whether the staff member is already scheduled for the day, no matter which shift
+   * @param staff the staff member to be checked
+   * @return true if the staff member is already in the shift, false otherwise
+   */
   public boolean checkifstaffinday(Staff staff)
   {
     if(this.weekday)
@@ -93,7 +113,11 @@ public class DaySchedule
       else return Arrays.asList(morningstaff).contains(staff) || Arrays.asList(nightstaff).contains(staff);
   }
 
-  //this function is used to find the position of the next main.staff in the array showing the schedule
+  /**
+   * This returns the first empty slot in a specific shift
+   * @param time this shows which shift to check
+   * @return the first empty slot of a shift
+   */
   public int checkpos(String time)
   {
     int i = 0;

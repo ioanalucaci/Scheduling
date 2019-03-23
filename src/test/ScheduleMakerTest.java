@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Tests related to the DaySchedules")
 class ScheduleMakerTest
 {
-    ArrayList<AuxStaff> staff = new ArrayList<AuxStaff>();
+    ArrayList<Staff> staff = new ArrayList<Staff>();
 
     int maxmorningstaff = 5;
     int maxafternoonstaff = 3;
@@ -33,7 +33,7 @@ class ScheduleMakerTest
     void testAddStaff()
     {
         for(int i = 0; i < 10; i ++)
-            staff.add(new AuxStaff(i));
+            staff.add(new Staff(i));
 
         schedulemaker.addStaff(schedule, "day", 5, staff);
 
