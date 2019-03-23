@@ -4,8 +4,16 @@ import java.util.Random;
 import java.util.ArrayList;
 import main.staff.*;
 
+/**
+ * This class creates the schedule for the Medical Assistants
+ */
 public class ScheduleMakerMA
 {
+  /**
+   * This class creates the schedule, making sure first to give every medical assistant at least 3 night shifts and 3 afternoon shifts. Afterwards, it populates the rest of the days randomly.
+   * @param mastaff the list of medical assistants to be added
+   * @param month the month schedule to be populated
+   */
     public void scheduleMA(ArrayList<MedicalAssistant> mastaff, MonthSchedule month)
   {
     DaySchedule[] schedule = month.schedulema;
@@ -17,10 +25,8 @@ public class ScheduleMakerMA
     Random randomGenerator = new Random();
 
     boolean check = false;
-    //nurses must each have 3 nights and 3 afternoons, and this loop ensures each nurse will have that.
     for(MedicalAssistant ma : mastaff)
     {
-      //the loop assigns them to 3 random nights
       while(ma.nightsworked < 3)
       {
         check = false;
@@ -37,7 +43,6 @@ public class ScheduleMakerMA
           break;
       }
 
-      //this loop assigns them to 3 random afternoons
       while(ma.afternoonsworked < 3)
       {
         check = false;
@@ -49,17 +54,21 @@ public class ScheduleMakerMA
           break;
       }
     }
-
-    //all is left is to fill all the other days randomly
     for(DaySchedule day : schedule)
     {
       addMA(day, "day", maxmorningma, mastaff);
       addMA(day, "night", maxnightma, mastaff);
-      //on Saturday and Sunday, there are 2 shifts of 12 hours instead of 3 shifts of 8 hours
       if(day.weekday) addMA(day, "afternoon", maxafternoonma, mastaff);
     }
   }
 
+  /**
+   * This function fills a certain shift with randomly picked medical assistants
+   * @param day the day schedule from where the shift is picked
+   * @param time the shift to be filled
+   * @param max the number of staff members needed on that shift
+   * @param mas the medical assistants available to be picked for the shift
+   */
     public void addMA(DaySchedule day, String time, int max, ArrayList<MedicalAssistant> mas)
   {
     Random randomGenerator = new Random();
