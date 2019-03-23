@@ -1,0 +1,39 @@
+-- These are the tables inspired by the structure of my mom's workplace
+CREATE TABLE  Staff (
+  id int(6) unsigned NOT NULL,
+  FirstName varchar(200) NOT NULL,
+  LastName varchar(200) NOT NULL,
+  Position varchar(200) NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT Chk_Staff CHECK (Position = 'Medical Assistant' OR Position = 'Nurse' OR Position = 'Janitor' OR Position = 'Stretch Bearer')
+  );
+
+CREATE TABLE Shift(
+  Staffid int(6) unsigned NOT NULL,
+  Day int,
+  Type varchar(200),
+  PRIMARY KEY(Staffid, Day),
+  CONSTRAINT Chk_type CHECK (Type = 'day' OR Type = 'night' OR Type = 'afternoon')
+  );
+
+INSERT INTO Staff (id, FirstName, LastName, Position) VALUES
+ (0, "Donald", "Olson", "Medical Assistant"),
+ (1, "Kristopher" , "Jacobson", "Janitor"),
+ (2, "Kaila", "Le", "Nurse"),
+ (3, "Kenna", "Miranda", "Stretch Bearer"),
+ (4, "Moriah", "Bowers", "Medical Assistant"),
+ (5, "Moriah", "Esparza", "Medical Assistant");
+
+INSERT INTO Shift(Staffid, Day, Type) VALUES
+ (0, 10, "day"),
+ (1, 10, "night"),
+ (2, 10, "afternoon"),
+ (3, 10, "day"),
+ (4, 10, "afternoon"),
+ (5, 10, "night"),
+ (1, 12, "day"),
+ (0, 12, "night"),
+ (3, 12, "afternoon"),
+ (4, 12, "day"),
+ (2, 12, "afternoon"),
+ (5, 12, "night");

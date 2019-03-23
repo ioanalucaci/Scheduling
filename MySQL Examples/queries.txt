@@ -1,0 +1,10 @@
+ -- These are some SQL queries for the tables above
+
+ --this query is to show all the staff members working in a certain day
+SELECT Staff.*, Shift.Day, Shift.Type FROM Staff INNER JOIN Shift WHERE Staff.id = Shift.Staffid AND Shift.Day = 10;
+
+--this query is to show the number of staff members working the different shifts of a day
+SELECT Type, COUNT(Type) as StaffNumbers FROM Shift WHERE Day= 12 GROUP BY Type;
+
+--this query shows how many staff members there are for different positions
+SELECT Position, COUNT(Position) as StaffNumbers FROM Staff GROUP BY Position;
